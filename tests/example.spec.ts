@@ -1,13 +1,14 @@
 import {test} from 'playwright/test';
+import { LandingPage } from './pages/landingPage';
 
 test('Basic Navigation2', async ({ page }) =>{
-await page.goto("https://fakestore.testelka.pl/");
-await page.locator('[class="woocommerce-store-notice__dismiss-link"]').click;
-await page.locator('[id="woocommerce-product-search-field-0"]').fill('windsurfing');
-await page.keyboard.press('Enter');
-await page.waitForTimeout(1500);
+const landingPage = new LandingPage(page);
+  
+await landingPage.openLandingPage();
+await landingPage.closeDemoStorePopup();
+await landingPage.searchForText("Windsurfing");
 
-const countOffersFound= await page.locator(productLink()).count();
+const countOffersFound = await page.locator(productLink()).count();
 console.log(`Found ${countOffersFound} product locators:`);
 
 for (let i = 0; i < countOffersFound; i++) {
