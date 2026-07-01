@@ -22,19 +22,8 @@ for (let i = 0; i < countOffersFound; i++) {
 }
 });
 
-function productTitle() {
-const productSelector = '[class="woocommerce-loop-product__title"]';
-return productSelector;
-}
-
-function productLink() {
-const selectorProductLink = '[class="woocommerce-LoopProduct-link woocommerce-loop-product__link"]';
-return selectorProductLink;
-}
-
-function productName() {
-const productName = '[class="product_title entry-title"]';
-return productName;
-}
+const productTitle = () => '[class="woocommerce-loop-product__title"]';
+const productLink = () => '[class="woocommerce-LoopProduct-link woocommerce-loop-product__link"]';
+const productName = () => '[class="product_title entry-title"]';
 
 //npx playwright test --project chromium --headed
