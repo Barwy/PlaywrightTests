@@ -4,11 +4,13 @@ export class LandingPage {
   readonly page: Page;
   readonly btnCloseDemoInfo: Locator;
   readonly fieldSearch: Locator;
+  readonly txtSearchResult: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.btnCloseDemoInfo = page.locator('[class="woocommerce-store-notice__dismiss-link"]');
     this.fieldSearch = page.locator('[id="woocommerce-product-search-field-0"]');
+    this.txtSearchResult = page.locator('[class="woocommerce-products-header__title page-title"]');
   }
 
   async openLandingPage() {
@@ -23,5 +25,8 @@ export class LandingPage {
 async searchForText(productName: string) {
     await this.fieldSearch.fill(productName);
     await this.page.keyboard.press("Enter");
+    await expect(this.txtSearchResult).toHaveText(`Wyniki wyszukiwania: „${productName}”`);
   }
+
+  searchResultText = () => this.txtSearchResult;
 }
