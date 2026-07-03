@@ -30,4 +30,4 @@ for (let i = 0; i < countProductsFound; i++) {
 }
 });
 
-//npx playwright test --project chromium --headed
+//npx playwright test -g "Find and open products" --project chromium --headed
