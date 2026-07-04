@@ -9,11 +9,6 @@ test('Try out', async ({ page }) => {
 
     await page.goto('https://fakestore.testelka.pl/product-category/windsurfing/');
     await page.locator('[id="secondary"] > [id="woocommerce_product_categories-3"] > ul > li').scrollIntoViewIfNeeded;
-    //await productListings.getBtnProductDetails().scrollIntoViewIfNeeded;
-    //await page.locator('[class="product-categories"]').getByText('Windsurfing').click();
-
-    //let categoryNames2 = await page.locator('[class="product-categories"]').getByText('Windsurfing').innerText();
-    //let categoryNames2 = await page.locator('[id="secondary"] > [id="woocommerce_product_categories-3"] > ul > li').innerText();
     let categoryNames2 = await page.locator('[class="product-categories"] > li[class] > a').nth(1).innerText();
     console.log(categoryNames2);
 
