@@ -9,7 +9,7 @@ export class ProductListings {
   constructor(page: Page) {
     this.page = page;
     this.productName = page.locator('[class="woocommerce-loop-product__title"]');
-    this.productPrice = page.locator('[class="price"]>[class="woocommerce-Price-amount amount"]');
+    this.productPrice = page.locator('[class="price"] [class="woocommerce-Price-amount amount"]');
     this.btnProductDetails = page.locator('[class="woocommerce-LoopProduct-link woocommerce-loop-product__link"]');
   }
 
