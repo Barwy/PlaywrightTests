@@ -12,12 +12,12 @@ await landingPage.openLandingPage();
 await landingPage.closeDemoStorePopup();
 await landingPage.searchForText("Windsurfing");
 
-const countProductsFound = await productListings.getBtnProductDetails().count();
+const countProductsFound = await productListings.btnProductDetails.count();
 console.log(`Found ${countProductsFound} products:`);
 for (let i = 0; i < countProductsFound; i++) {
-  await productListings.getBtnProductDetails().scrollIntoViewIfNeeded;
-  let listngsProductTitle: string = await productListings.getProductName().nth(i).innerText();
-  await productListings.getBtnProductDetails().nth(i).click();
+  await productListings.btnProductDetails.scrollIntoViewIfNeeded;
+  let listngsProductTitle: string = await productListings.productName.nth(i).innerText();
+  await productListings.btnProductDetails.nth(i).click();
   await productPage.headerProductName().waitFor({state: 'visible', timeout: 5000});
   let productTitle: string = await productPage.headerProductName().innerText();
   
