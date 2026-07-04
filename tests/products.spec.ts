@@ -19,7 +19,6 @@ test('Check product prices', async ({ page }) => {
 
     for (let i = 0; i < listOfProductCategories.length; i++) {
         await page.locator('[class="product-categories"]').getByText(listOfProductCategories.at(i)).click();
-        //await page.waitForTimeout(2000); //Add wait for element
         await expect(productListingsPage.getProductName());
         console.log("\n"+listOfProductCategories.at(i));
 
