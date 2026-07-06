@@ -30,4 +30,26 @@ test('Find and open products', async ({ page }) => {
   }
 });
 
+test('Display empty search results page', async ({ page }) => {
+  const landingPage = new LandingPage(page);
+  const productListings = new ProductListings(page);
+
+  await landingPage.openLandingPage();
+  await landingPage.closeDemoStorePopup();
+  await landingPage.searchForText("Shoes");
+  const countProductsFound = await productListings.btnProductDetails.count();
+  if (countProductsFound < 1) {
+    console.log(`Success: ${countProductsFound} prodeucts were found!`);
+  } else {
+    const productsFound = new Array();
+    for (let i = 0; i < countProductsFound; i++) {
+      let productFound = await productListings.productName.nth(i).innerText();
+      productsFound.push(productFound);
+    }
+    console.log(`Failure: found ${countProductsFound} product(s): ${productsFound}`);
+  }
+  await expect(productListings.btnProductDetails).toHaveCount(0);
+});
+
 //npx playwright test -g "Find and open products" --project chromium --headed
+//npx playwright test -g "Display empty search results page" --project chromium --headed
