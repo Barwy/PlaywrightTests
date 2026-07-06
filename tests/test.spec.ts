@@ -2,6 +2,7 @@ import { expect, test } from 'playwright/test';
 import { LandingPage } from './pages/landingPage';
 import { ProductListings } from './pages/productListingsPage';
 import { ProductPage } from './pages/productPage';
+import { productToPrice } from './data/mapProductToPrice';
 
 test('Try out', async ({ page }) => {
     const landingPage = new LandingPage(page);

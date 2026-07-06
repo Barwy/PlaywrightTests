@@ -17,10 +17,10 @@ test('Check product prices', async ({ page }) => {
         listOfProductCategories.push(categoryNames);
     }
 
-    for (let i = 0; i < listOfProductCategories.length; i++) {
-        await productListings.btnProductCategory.getByText(listOfProductCategories.at(i)).click();
+     for (let x of listOfProductCategories) {
+        await productListings.btnProductCategory.getByText(listOfProductCategories.at(x)).click();
         await expect(productListings.productName);
-        console.log("\n" + listOfProductCategories.at(i));
+        console.log("\n" + listOfProductCategories.at(x));
 
         let numberOfProductsDisplayed = await productListings.productName.count();
         for (let n = 0; n < numberOfProductsDisplayed; n++) {
