@@ -10,6 +10,7 @@ test('Check product prices', async ({ page }) => {
     await landingPage.openLandingPage();
     await landingPage.btnClickMenu("Sklep").click();
 
+    let failsCount: number = 0;
     const numberOfCategories = await productListings.btnProductCategory.count();
     const listOfProductCategories = new Array();
     for (let i = 0; i < numberOfCategories; i++) {
@@ -27,13 +28,19 @@ test('Check product prices', async ({ page }) => {
             await productListings.productName.nth(n).scrollIntoViewIfNeeded;
             let productName: string = await productListings.productName.nth(n).innerText();
             let productPrice: string = await productListings.productPrice.nth(n).innerText();
-            if (productPrice.slice(0, -3) === productToPrice.get(productName)) {
+            productPrice = productPrice.slice(0, -3);
+            if (productPrice === productToPrice.get(productName)) {
                 console.log(`${n + 1}/${numberOfProductsDisplayed} Prices match for: ${productName}`);
             } else {
                 console.log(`${n + 1}/${numberOfProductsDisplayed} Prices do not match for: ${productName}`);
+                failsCount++;
             }
+            await expect.soft(productPrice).toBe(productToPrice.get(productName));
         }
     }
+    if (failsCount > 0) {
+    throw new Error(`Encountered ${failsCount} fail(s). Please see the report for details.`);
+  }
 });
 
 //npx playwright test -g "Check product prices" --project chromium --headed

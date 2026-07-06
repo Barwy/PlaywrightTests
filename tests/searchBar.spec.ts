@@ -12,6 +12,7 @@ test('Find and open products', async ({ page }) => {
   await landingPage.closeDemoStorePopup();
   await landingPage.searchForText("Windsurfing");
 
+  let failsCount: number = 0;
   const countProductsFound = await productListings.btnProductDetails.count();
   console.log(`Found ${countProductsFound} products:`);
   for (let i = 0; i < countProductsFound; i++) {
@@ -25,9 +26,13 @@ test('Find and open products', async ({ page }) => {
       console.log(`Product names match: ${listngsProductTitle}`)
     } else {
       console.log(`Product names differ: ${listngsProductTitle} vs ${productTitle}`)
+      failsCount++;
     }
-    await expect(listngsProductTitle).toBe(productTitle);
+    await expect.soft(listngsProductTitle).toBe(productTitle);
     await page.goBack();
+  }
+  if (failsCount > 0) {
+    throw new Error(`Encountered ${failsCount} fail(s). Please see the report for details.`);
   }
 });
 
@@ -37,7 +42,7 @@ test('Display empty search results page', async ({ page }) => {
 
   await landingPage.openLandingPage();
   await landingPage.closeDemoStorePopup();
-  await landingPage.searchForText("Shoes");
+  await landingPage.searchForText("Windsurfing");
   const countProductsFound = await productListings.btnProductDetails.count();
   if (countProductsFound < 1) {
     console.log(`Success: ${countProductsFound} prodeucts were found!`);
