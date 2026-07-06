@@ -26,6 +26,7 @@ test('Find and open products', async ({ page }) => {
     } else {
       console.log(`Product names differ: ${listngsProductTitle} vs ${productTitle}`)
     }
+    await expect(listngsProductTitle).toBe(productTitle);
     await page.goBack();
   }
 });
