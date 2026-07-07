@@ -1,9 +1,19 @@
 import { expect, test } from 'playwright/test';
 import { LandingPage } from './pages/landingPage';
 import { ProductListings } from './pages/productListingsPage';
-import { ProductPage } from './pages/productPage';
-import { productToPrice } from './data/mapProductToPrice';
+import { readeExcelCell, readExcelRow, writeExcelRow, writeToExcelCell } from './otherClasses/excelManager';
 
+test('Check if excel functions work', async ({ page }) => {
+    await writeToExcelCell("output.xlsx", "Arkusz1", "D1", "Rome");
+    const cellValue = await readeExcelCell("output.xlsx", "Arkusz1", "D1");
+    console.log(`I live in ${cellValue}`);
+
+    await writeExcelRow("output.xlsx", "Arkusz1", 3, "Amy", "Ben", "Charlie");
+    const cellValues = await readExcelRow("output.xlsx", "Arkusz1", 3);
+    console.log(cellValues);
+    console.log(`My name is ${cellValues[0]}, this is ${cellValues[1]} and that's ${cellValues[2]}.`);
+});
+//npx playwright test -g "Check if excel functions work" --project chromium --headed
 
 
 

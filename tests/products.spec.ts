@@ -18,7 +18,7 @@ test('Check product prices', async ({ page }) => {
         listOfProductCategories.push(categoryNames);
     }
 
-     for (let x of listOfProductCategories) {
+    for (let x of listOfProductCategories) {
         await productListings.btnProductCategory.getByText(listOfProductCategories.at(x)).click();
         await expect(productListings.productName);
         console.log("\n" + listOfProductCategories.at(x));
@@ -39,8 +39,8 @@ test('Check product prices', async ({ page }) => {
         }
     }
     if (failsCount > 0) {
-    throw new Error(`Encountered ${failsCount} fail(s). Please see the report for details.`);
-  }
+        throw new Error(`Encountered ${failsCount} fail(s). Please see the report for details.`);
+    }
 });
 
 //npx playwright test -g "Check product prices" --project chromium --headed
