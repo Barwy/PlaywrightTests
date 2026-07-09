@@ -1,4 +1,4 @@
-export const productToPrice = new Map([
+export const productToPrice = new Map<string, string>([
 //windsurfing
 ["Egipt – El Gouna", "3 400,00"],
 ["Fuerteventura – Sotavento", "3 600,00"],

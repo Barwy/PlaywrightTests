@@ -1,7 +1,7 @@
 import { expect, test } from 'playwright/test';
 import { LandingPage } from './pages/landingPage';
 import { ProductListings } from './pages/productListingsPage';
-import { readeExcelCell, readExcelRow, writeExcelRow, writeToExcelCell } from './otherClasses/excelManager';
+import { readeExcelCell, readExcelRow, writeExcelRow, writeToExcelCell } from './utils/excelManager';
 
 test('Check if excel functions work', async ({ page }) => {
     await writeToExcelCell("output.xlsx", "Arkusz1", "D1", "Rome");
