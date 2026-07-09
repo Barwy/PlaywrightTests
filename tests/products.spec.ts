@@ -25,7 +25,7 @@ test('Check product prices', async ({ page }) => {
 
         let numberOfProductsDisplayed = await productListings.productName.count();
         for (let n = 0; n < numberOfProductsDisplayed; n++) {
-            await productListings.productName.nth(n).scrollIntoViewIfNeeded;
+            await productListings.productName.nth(n).scrollIntoViewIfNeeded();
             let productName: string = await productListings.productName.nth(n).innerText();
             let productPrice: string = await productListings.productPrice.nth(n).innerText();
             productPrice = productPrice.slice(0, -3);
