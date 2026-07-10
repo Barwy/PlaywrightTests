@@ -5,15 +5,12 @@ export class LandingPage {
   readonly btnCloseDemoInfo: Locator;
   readonly fieldSearch: Locator;
   readonly txtSearchResult: Locator;
-  readonly btnMenu: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    const text: string = "";
     this.btnCloseDemoInfo = page.locator('[class="woocommerce-store-notice__dismiss-link"]');
     this.fieldSearch = page.locator('[id="woocommerce-product-search-field-0"]');
     this.txtSearchResult = page.locator('[class="woocommerce-products-header__title page-title"]');
-    this.btnMenu = page.locator('[class="menu nav-menu"]').getByText(text);
   }
 
   async openLandingPage() {
@@ -32,7 +29,7 @@ export class LandingPage {
   }
 
   searchResultText = () => this.txtSearchResult;
-
+  
   async btnClickMenu(btnName: string) {
     await this.page.locator('[class="menu nav-menu"]').getByText(btnName).click();
     await expect(this.page.locator('//h1')).toHaveText(btnName);
