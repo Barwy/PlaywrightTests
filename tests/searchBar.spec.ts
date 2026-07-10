@@ -42,7 +42,7 @@ test('Display empty search results page', async ({ page }) => {
 
   await landingPage.openLandingPage();
   await landingPage.closeDemoStorePopup();
-  await landingPage.searchForText('Windsurfing');
+  await landingPage.searchForText('Shoes');
   const countProductsFound = await productListings.btnProductDetails.count();
   if (countProductsFound < 1) {
     console.log(`Success: ${countProductsFound} prodeucts were found!`);

@@ -11,18 +11,20 @@ export class LoginPage {
     readonly inputNewAccPassword: Locator;
     readonly inputLogInEmail: Locator;
     readonly inputLogInPassword: Locator;
+    readonly btnLogIn: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.txtPageHeader = this.page.locator('[class="entry-title"]');
-        this.labelInputNewAccEmail = this.labelInputField("username");
-        this.inputNewAccEmail = this.inputField("username");
-        this.labelInputNewAccPassword = this.labelInputField("password");
-        this.inputNewAccPassword = this.inputField("password");
-        this.labelInputLogInEmail = this.labelInputField("reg_email");
-        this.inputLogInEmail = this.inputField("reg_email");
-        this.labelInputLogInPassword = this.labelInputField("reg_password");  
-        this.inputLogInPassword = this.inputField("reg_password");
+        this.labelInputNewAccEmail = this.labelInputField("reg_email");
+        this.inputNewAccEmail = this.inputField("reg_email");
+        this.labelInputLogInEmail = this.labelInputField("username");
+        this.inputLogInEmail = this.inputField("username");
+        this.labelInputNewAccPassword = this.labelInputField("reg_password");
+        this.inputNewAccPassword = this.inputField("reg_password");
+        this.labelInputLogInPassword = this.labelInputField("password");  
+        this.inputLogInPassword = this.inputField("password");
+        this.btnLogIn = this.page.locator('button[name="login"]');
     }
 
     labelInputField = (txtFieldName: string) => this.page.locator(`label[for="${txtFieldName}"]`);

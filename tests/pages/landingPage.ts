@@ -25,12 +25,16 @@ export class LandingPage {
     expect(this.btnCloseDemoInfo).toBeHidden();
   }
 
-async searchForText(productName: string) {
+  async searchForText(productName: string) {
     await this.fieldSearch.fill(productName);
     await this.page.keyboard.press("Enter");
     await expect(this.txtSearchResult).toHaveText(`Wyniki wyszukiwania: „${productName}”`);
   }
 
   searchResultText = () => this.txtSearchResult;
-  btnClickMenu = (btnName: string) => this.page.locator('[class="menu nav-menu"]').getByText(btnName).click();
+
+  async btnClickMenu(btnName: string) {
+    await this.page.locator('[class="menu nav-menu"]').getByText(btnName).click();
+    await expect(this.page.locator('//h1')).toHaveText(btnName);
+  }
 }

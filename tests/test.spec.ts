@@ -1,12 +1,14 @@
 import { expect, test } from 'playwright/test';
 import { LandingPage } from './pages/landingPage';
 import { ProductListings } from './pages/productListingsPage';
-import { readeExcelCell, readExcelRow, writeExcelRow, writeToExcelCell } from './utils/excelManager';
+import { readExcelCell, readExcelRow, writeExcelRow, writeToExcelCell } from './utils/excelManager';
 
 test('Check if excel functions work', async ({ page }) => {
-    await writeToExcelCell("output.xlsx", "Arkusz1", "D1", "Rome");
-    const cellValue = await readeExcelCell("output.xlsx", "Arkusz1", "D1");
+    //await writeToExcelCell("output.xlsx", "Arkusz1", "D1", "Rome");
+    const cellValue = await readExcelCell("output.xlsx", "Arkusz1", "D1");
     console.log(`I live in ${cellValue}`);
+    const user = await readExcelCell('output.xlsx', 'Users', 'A2');
+    console.log(user);
 
     await writeExcelRow("output.xlsx", "Arkusz1", 3, "Amy", "Ben", "Charlie");
     const cellValues = await readExcelRow("output.xlsx", "Arkusz1", 3);
@@ -28,7 +30,7 @@ test('Try out', async ({ page }) => {
     let categoryNames2 = await page.locator('[class="product-categories"] > li[class] > a').nth(1).innerText();
     console.log(categoryNames2);
 
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(3000);
 
 });
 
