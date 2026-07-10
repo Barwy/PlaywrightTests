@@ -10,7 +10,7 @@ test('Find and open products', async ({ page }) => {
 
   await landingPage.openLandingPage();
   await landingPage.closeDemoStorePopup();
-  await landingPage.searchForText("Windsurfing");
+  await landingPage.searchForText('Windsurfing');
 
   let failsCount: number = 0;
   const countProductsFound = await productListings.btnProductDetails.count();
@@ -42,7 +42,7 @@ test('Display empty search results page', async ({ page }) => {
 
   await landingPage.openLandingPage();
   await landingPage.closeDemoStorePopup();
-  await landingPage.searchForText("Windsurfing");
+  await landingPage.searchForText('Windsurfing');
   const countProductsFound = await productListings.btnProductDetails.count();
   if (countProductsFound < 1) {
     console.log(`Success: ${countProductsFound} prodeucts were found!`);

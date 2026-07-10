@@ -1,29 +1,30 @@
 import { expect, test } from 'playwright/test';
+import { LoginPage } from './pages/myAccountPage';
+import { LandingPage } from './pages/landingPage';
 
 test('Get my account page textfield headers', async ({ page }) => {
-    await page.goto("https://fakestore.testelka.pl/moje-konto/");
+    const landingPage = new LandingPage(page);
+    const loginPage = new LoginPage(page);
 
-    const txtPageHeader: string = '[class="entry-title"]';
+    landingPage.openLandingPage();
+    landingPage.btnClickMenu('Moje konto');
+    await expect(loginPage.txtPageHeader).toHaveText('Moje konto');
 
-    const inputNewAccEmail: string = 'label[for="username"]';
-    const inputNewAccPassword: string = 'label[for="password"]';
-    const inputLogInEmail: string = 'label[for="reg_email"]';
-    const inputLogInPassword: string = 'label[for="reg_password"]';
-
-    await expect(page.locator(txtPageHeader)).toHaveText('Moje konto');
-
-    const headers: (string | null)[] = await Promise.all([
-        page.locator(inputNewAccEmail).textContent(),
-        page.locator(inputNewAccPassword).textContent(),
-        page.locator(inputLogInEmail).textContent(),
-        page.locator(inputLogInPassword).textContent()
+    const inputHeaders: (string | null)[] = await Promise.all([
+        loginPage.labelInputLogInEmail.textContent(),
+        loginPage.labelInputNewAccEmail.textContent(),
+        loginPage.labelInputLogInPassword.textContent(),
+        loginPage.labelInputNewAccPassword.textContent()
     ]);
-    
-    for(let x of headers) {
-        x = x ==null ? "" : x;
+    logArrayText(inputHeaders);
+});
+
+function logArrayText(myArray: (string | null)[]) {
+    for (let x of myArray) {
+        x = x == null ? "" : x;
         x = x.includes(" *Wymagane") ? "" : x.slice(0, -10);
         console.log(x);
-        } 
-});
+    }
+}
 
 //npx playwright test -g "Get my account page textfield headers" --project chromium --headed

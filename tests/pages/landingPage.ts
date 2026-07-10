@@ -32,5 +32,5 @@ async searchForText(productName: string) {
   }
 
   searchResultText = () => this.txtSearchResult;
-  btnClickMenu = (btnName: string) => this.page.locator('[class="menu nav-menu"]').getByText(btnName);
+  btnClickMenu = (btnName: string) => this.page.locator('[class="menu nav-menu"]').getByText(btnName).click();
 }

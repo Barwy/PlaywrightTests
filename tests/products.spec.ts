@@ -8,7 +8,7 @@ test('Check product prices', async ({ page }) => {
     const productListings = new ProductListings(page);
 
     await landingPage.openLandingPage();
-    await landingPage.btnClickMenu("Sklep").click();
+    await landingPage.btnClickMenu("Sklep");
 
     let failsCount: number = 0;
     const numberOfCategories = await productListings.btnProductCategory.count();
